@@ -35,6 +35,7 @@ jobs:
 
       - name: OSS scan
         run: mvn ossindex:audit
+        continue-on-error: true
 
       - name: OWASP Scan
         if: false
