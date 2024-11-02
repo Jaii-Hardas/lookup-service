@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      DOCKER_REGISTRY_USER: jaii1515 
+      DOCKER_REGISTRY_USER: jaii1515
 
     steps:
       - name: Setup java
