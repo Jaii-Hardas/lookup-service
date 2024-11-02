@@ -1,0 +1,66 @@
+name: CI/CD workflow
+
+on:
+  push:
+    branches:
+      - main 
+  pull_request:
+    branches:
+      - main  
+
+jobs:
+  pre-commit-scans:
+    runs-on: ubuntu-latest
+
+    env:
+      DOCKER_REGISTRY_USER: jaii1515 
+
+    steps:
+      - name: Setup java
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "21"
+          
+      - name: Checkout code
+        uses: actions/checkout@v4
+ 
+      - name: Perform google formatter check
+        run: mvn com.spotify.fmt:fmt-maven-plugin:check
+
+      - name: GitLeaks Scan
+        uses: zricethezav/gitleaks-action@v1.3.0
+        with:
+          args: --path=.
+
+      - name: OSS scan
+        run: mvn ossindex:audit
+
+      - name: OWASP Scan
+        if: false
+        run: mvn org.owasp:dependency-check-maven:check
+
+      - name: Run Unit Tests
+        run: mvn test
+
+      - name: Report Test Results
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-results
+          path: target/surefire-reports/*.xml
+
+      - name: Build code and create docker image
+        run: mvn clean install docker:build
+
+      - name: Re tag the docker image
+        run: docker tag dnyanyog.org/lookup-service:latest ${{ env.DOCKER_REGISTRY_USER }}/lookup-service:latest
+
+      - name: Log in to GitHub Docker Registry
+        uses: docker/login-action@v2
+        with:
+          username: ${{ env.DOCKER_REGISTRY_USER }}
+          password: ${{ secrets.DOCKER_REGISTRY_PAT }} 
+          
+      - name: Push docker image
+        run: docker push ${{ env.DOCKER_REGISTRY_USER }}/lookup-service:latest  

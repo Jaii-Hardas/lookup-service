@@ -1,0 +1,35 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+	<!-- Insert statements for Lookup table -->
+    <changeSet author="Jaii Hardas" id="2024121721">
+        <insert schemaName="lookup_service_db" tableName="Lookup">
+            <column name="id" value="1" />
+            <column name="tenant" value="exampleTenant" />
+            <column name="employment_status" value="Full-Time" />
+            <column name="currency" value="USD" />
+            <column name="skill" value="Java" />
+            <column name="education" value="Bachelor's Degree" />
+            <column name="country" value="US" />
+            <column name="state" value="California" />
+            <column name="nationalities" value="American" />
+        </insert>
+    </changeSet>
+
+    <changeSet author="Jaii Hardas" id="2024121722">
+        <insert schemaName="lookup_service_db" tableName="Lookup">
+            <column name="id" value="2" />
+            <column name="tenant" value="anotherTenant" />
+            <column name="employment_status" value="Part-Time" />
+            <column name="currency" value="EUR" />
+            <column name="skill" value="Python" />
+            <column name="education" value="Master's Degree" />
+            <column name="country" value="DE" />
+            <column name="state" value="Berlin" />
+            <column name="nationalities" value="German" />
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

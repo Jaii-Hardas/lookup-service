@@ -80,7 +80,7 @@ public class LookupServiceImp {
       lookup.setState(request.getState());
       lookup.setNationality(request.getNationalities());
       lookup.setTenant(request.getTenant());
-      lookup.getStatus(); // Ensure you set the status
+      lookup.getStatus();
 
       lookupRepository.save(lookup);
 

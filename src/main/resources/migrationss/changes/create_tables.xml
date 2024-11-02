@@ -1,0 +1,41 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.6.xsd">
+
+
+	
+    <changeSet id="20241031" author="Jaii Hardas">
+        <createTable tableName="Lookup" schemaName="clients_service_db">
+            <column name="id" type="BIGINT">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="tenant" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="employment_status" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="currency" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="skill" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="education" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="country" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="state" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="nationalities" type="VARCHAR(255)">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
